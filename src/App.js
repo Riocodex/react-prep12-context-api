@@ -1,23 +1,20 @@
-import logo from './logo.svg';
+import {useState} from "react"
 import './App.css';
+import { Home } from "./components/Home";
+import { Profile } from "./components/Profile";
+import { UserData } from "./contexts/GlobalContext";
 
+//use context api is basically a better more advanced way of using props..should be using this instead wayyy better and easier
 function App() {
+
+  const [name, setName] = useState("Rio");
+  const [age, setAge] = useState(51)
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <UserData.Provider value={{name, setName, age}}>
+      <Home/>
+      <Profile />
+      </UserData.Provider>
     </div>
   );
 }
